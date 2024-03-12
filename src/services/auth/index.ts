@@ -13,7 +13,7 @@ export const {
     error: '/auth',
     signOut: '/auth',
     verifyRequest: '/auth',
-    newUser: '/auth',
+    newUser: '/app',
   },
   providers: [
     EmailProvider({
