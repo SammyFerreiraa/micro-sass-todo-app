@@ -1,8 +1,9 @@
 'use client'
 
-import DashboardSidebar from '@/components/dashboard/sidebar'
+import { DashboardSidebar } from '@/components/dashboard/sidebar'
 import { usePathname } from 'next/navigation'
 import { MixerHorizontalIcon, HomeIcon } from '@radix-ui/react-icons'
+import { UserDropdown } from './user-dropdown'
 
 export default function MainSidebar() {
   const pathname = usePathname()
@@ -51,7 +52,7 @@ export default function MainSidebar() {
         </DashboardSidebar.Nav>
       </DashboardSidebar.Main>
       <DashboardSidebar.Footer>
-        <h1>User</h1>
+        <UserDropdown />
       </DashboardSidebar.Footer>
     </DashboardSidebar>
   )
