@@ -4,20 +4,26 @@ import { DashboardSidebar } from '@/components/dashboard/sidebar'
 import { usePathname } from 'next/navigation'
 import { MixerHorizontalIcon, HomeIcon } from '@radix-ui/react-icons'
 import { UserDropdown } from './user-dropdown'
+import Logo from '@/components/logo'
+import { Session } from 'next-auth'
 
-export default function MainSidebar() {
+type mainSidebarProps = {
+  user: Session['user']
+}
+
+export default function MainSidebar({ user }: mainSidebarProps) {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
     return pathname === path
   }
 
+  if (!user) return
+
   return (
     <DashboardSidebar>
       <DashboardSidebar.Header>
-        <DashboardSidebar.Header.Title>
-          Micro Sass
-        </DashboardSidebar.Header.Title>
+        <Logo />
       </DashboardSidebar.Header>
       <DashboardSidebar.Main className="flex flex-grow flex-col">
         <DashboardSidebar.Nav>
@@ -52,7 +58,7 @@ export default function MainSidebar() {
         </DashboardSidebar.Nav>
       </DashboardSidebar.Main>
       <DashboardSidebar.Footer>
-        <UserDropdown />
+        <UserDropdown user={user} />
       </DashboardSidebar.Footer>
     </DashboardSidebar>
   )
