@@ -54,8 +54,12 @@ export default function AuthForm() {
               {...form.register('email')}
             />
           </div>
-          <Button className="w-full" type="submit">
-            Send Magic Link
+          <Button
+            className="w-full"
+            type="submit"
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? 'Sending...' : 'Send magic link'}
           </Button>
         </form>
       </CardContent>
