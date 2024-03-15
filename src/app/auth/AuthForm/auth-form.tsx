@@ -20,7 +20,7 @@ export default function AuthForm() {
 
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
-      await signIn('email', { email: data.email, redirect: false })
+      await signIn('nodemailer', { email: data.email, redirect: false })
       toast({
         title: 'Magic Link Sent',
         description: 'Check your email for the magic link',
