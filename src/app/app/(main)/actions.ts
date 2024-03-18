@@ -12,6 +12,9 @@ export async function getUserTodos() {
     where: {
       userId: session?.user?.id,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
 
   return todos
