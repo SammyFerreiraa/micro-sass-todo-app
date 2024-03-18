@@ -35,73 +35,16 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Todo } from '../types'
 
-const data: Todo[] = [
-  {
-    id: '1',
-    title: 'Complete React project',
-    createdAt: new Date('2022-09-01'),
-    updatedAt: new Date('2022-09-05'),
-    finishedAt: new Date('2022-09-10'),
-  },
-  {
-    id: '2',
-    title: 'Update project documentation',
-    createdAt: new Date('2022-09-02'),
-    updatedAt: new Date('2022-09-06'),
-  },
-  {
-    id: '3',
-    title: 'Review pull requests',
-    createdAt: new Date('2022-09-03'),
-    updatedAt: new Date('2022-09-07'),
-    finishedAt: new Date('2022-09-08'),
-  },
-  {
-    id: '4',
-    title: 'Plan next sprint',
-    createdAt: new Date('2022-09-04'),
-    updatedAt: new Date('2022-09-08'),
-  },
-  {
-    id: '5',
-    title: 'Refactor backend code',
-    createdAt: new Date('2022-09-05'),
-    updatedAt: new Date('2022-09-09'),
-    finishedAt: new Date('2022-09-11'),
-  },
-  {
-    id: '6',
-    title: 'Optimize database queries',
-    createdAt: new Date('2022-09-06'),
-    updatedAt: new Date('2022-09-10'),
-  },
-  {
-    id: '7',
-    title: 'Implement caching strategy',
-    createdAt: new Date('2022-09-07'),
-    updatedAt: new Date('2022-09-11'),
-  },
-  {
-    id: '8',
-    title: 'Setup CI/CD pipeline',
-    createdAt: new Date('2022-09-08'),
-    updatedAt: new Date('2022-09-12'),
-    finishedAt: new Date('2022-09-14'),
-  },
-]
-
 export const columns: ColumnDef<Todo>[] = [
   {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => {
-      const { finishedAt } = row.original
-      const status: 'done' | 'waiting' = finishedAt ? 'done' : 'waiting'
-      const statusVariant: 'outline' | 'secondary' = finishedAt
-        ? 'outline'
-        : 'secondary'
+      const { doneAt } = row.original
+      const status: 'done' | 'waiting' = doneAt ? 'done' : 'waiting'
+      const variant: 'outline' | 'secondary' = doneAt ? 'outline' : 'secondary'
 
-      return <Badge variant={statusVariant}>{status}</Badge>
+      return <Badge variant={variant}>{status}</Badge>
     },
   },
   {
@@ -162,7 +105,11 @@ export const columns: ColumnDef<Todo>[] = [
   },
 ]
 
-export function TodoDataTable() {
+type TodoDataTable = {
+  data: Todo[]
+}
+
+export function TodoDataTable({ data }: TodoDataTable) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
