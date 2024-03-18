@@ -12,7 +12,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { Todo } from './todo-data-table'
 import { useRef } from 'react'
 import {
   Form,
@@ -24,6 +23,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { useForm } from 'react-hook-form'
+import { Todo } from '../types'
 
 type TodoUpsertSheetProps = {
   children?: React.ReactNode
