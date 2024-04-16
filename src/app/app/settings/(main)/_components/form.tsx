@@ -54,7 +54,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="h-screen space-y-8">
+      <form onSubmit={onSubmit} className="space-y-8">
         <Card>
           <CardHeader>
             <CardTitle>Name</CardTitle>
@@ -114,7 +114,9 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
         </Card>
 
         <SheetFooter className="mt-auto">
-          <Button type="submit">Save changes</Button>
+          <Button disabled={form.formState.isSubmitting} type="submit">
+            {form.formState.isSubmitting ? 'Saving...' : 'Save changes'}
+          </Button>
         </SheetFooter>
       </form>
     </Form>
