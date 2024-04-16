@@ -15,6 +15,9 @@ export default function MainSidebar({ user }: mainSidebarProps) {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
+    if (path === '/app/settings' && pathname.includes('/app/settings')) {
+      return true
+    }
     return pathname === path
   }
 
